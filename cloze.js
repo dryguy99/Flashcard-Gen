@@ -19,4 +19,4 @@ function clozeCard(front, back){
 						console.log(error);}
 		});
 }// end basicCard function
-module.exports = basicCard(front, back);
+module.exports = clozeCard(front, back);
