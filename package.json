@@ -1,0 +1,23 @@
+{
+  "name": "flashcard-gen",
+  "version": "1.0.0",
+  "description": "generate flashcards",
+  "main": "flashcard.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dryguy99/Flashcard-Gen.git"
+  },
+  "author": "timothy dry",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dryguy99/Flashcard-Gen/issues"
+  },
+  "homepage": "https://github.com/dryguy99/Flashcard-Gen#readme",
+  "dependencies": {
+    "connect": "^3.6.0",
+    "serve-static": "^1.12.1"
+  }
+}
