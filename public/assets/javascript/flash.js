@@ -4,6 +4,24 @@ $('#basic').css("display", "block");
 $('#cloze').css("display", "none");
 $('#game').css("display", "none");
 
+function postItem(front, back) {
+        $.ajax({
+            type: "POST",
+            url: "http://users/dryguy/git-work/server/Flashcard-Gen/app.js",
+            timeout: 2000,
+            data: { front: front, back: back },
+            success: function(data) {
+                //show content
+                console.log('Success!')
+            },
+            error: function(jqXHR, textStatus, err) {
+                //show error message
+                console.log('text status '+textStatus+', err '+err)
+            }
+        });
+    }//postItem()
+
+
 $(document).on('click', '.mybtn', function () {
 	event.preventDefault();
 
@@ -29,4 +47,10 @@ $(document).on('click', '#submitbtn', function () {
 	$("#back").val("");
 	console.log("front: " + front + "\n back: " + back);
 
+	postItem(front, back);
+    
 });
+
+
+
+
