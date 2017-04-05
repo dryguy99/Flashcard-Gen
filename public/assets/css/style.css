@@ -1,0 +1,59 @@
+body {
+	margin: 0px auto;
+	width: 80vw;
+}
+#basic {
+	display: block;
+}
+
+#cloze {
+	display: none;
+}
+#game {
+	display: none;
+}
+label, input {
+	font-size: 2.1vw;
+}
+label {
+	margin-left: 12vw;
+}
+.myform {
+	background: blue;
+	color: white;
+	font-size: 1.8vw;
+	padding: 1vw;
+	border-radius: 4vw;
+}
+.mybtn[data-selected="true"] {
+	background: #cc7a00;
+	color: white;
+	font-size: 1.6vw;
+	padding: 0.9vw;
+	border-radius: 4vw;
+}
+.mybtn[data-selected="false"] {
+	background: green;
+	color: white;
+	font-size: 1.6vw;
+	padding: 0.9vw;
+	border-radius: 4vw;
+}
+button:focus {
+	outline: none;
+}
+input {
+	width: 44vw;
+}
+p, h5 {
+	margin-left: 12vw;
+	font-size: 1.7vw;
+}
+h3 {
+
+}
+h4 {
+	font-weight: 700;
+	margin-left: 12vw;
+	font-size: 1.7vw;
+}
