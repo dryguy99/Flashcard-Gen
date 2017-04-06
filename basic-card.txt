@@ -1,11 +1,5 @@
-{}
-{}
-{}
-{}
-{}
-{}
-{}
-{}
-{}
-{}
-{}
+{"front":"Who is the first President of the United States","back":"George Washington"}
+{"front":"Who is our current President of the United States?","back":"Donald  Trump"}
+{"front":"What is the capital of New Jersey?","back":"Trenton"}
+{"front":"What is the Capital of New York?","back":"Albany"}
+{"front":"In What city is the Liberty Bell Kept?","back":"Philadelphia"}

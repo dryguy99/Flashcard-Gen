@@ -1,17 +1,16 @@
 
 var fs = require("fs");
 
+exports.clozeCard = function (front, back){
 
-function clozeCard(front, back){
-
-  if (this instanceof clozeCard){
-  	this.file = "cloze-card.txt";
+  if (this instanceof Object){
+  	var file = "cloze-card.txt";
     this.front = front;
     this.back = back;
   } else {
     return new clozeCard(front, back);  
   }
-  fs.appendFile(this.file, JSON.stringify({
+  fs.appendFile(file, JSON.stringify({
 			front: this.front,
 			back: this.back
 		}) + "\n", function(error){
@@ -19,4 +18,3 @@ function clozeCard(front, back){
 						console.log(error);}
 		});
 }// end basicCard function
-module.exports = clozeCard();
