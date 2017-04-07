@@ -2,13 +2,14 @@
 
 // BASE SETUP
 // =============================================================================
-
+// var gtype = "basic";
 // call the packages we need
 var express    = require('express');        // call express
 var app        = express();                 // define our app using express
 var bodyParser = require('body-parser');	// parse the json data
-var basic = require('./flashcard.js');		//constructor for basic flashcards
+var basic = require('./flashcard.js');		// constructor for basic flashcards
 var cloze = require('./cloze.js');			// constructor for cloze flashcards
+var fs = require('fs');
 
 var mysql = require('mysql');				// call mysql
 var AST = require('node-sqlparser');		// call node sql parser
@@ -27,19 +28,16 @@ var allowCrossDomain = function(req, res, next) {
     }
 };
 app.use(allowCrossDomain);
+var mybasicData = new basic.basicCard();
 
 //----------------------------------------------
 // set up mySQL
 var connection = mysql.createConnection({
  host: "localhost",
  port: 3306,
-
- // Your username
  user: 'root',
-
- // Your password
  password: '',
- database: 'musicDB'
+ database: 'flashcard_db'
 });
 
 
@@ -62,10 +60,14 @@ router.use(function(req, res, next) {
     next();
 });
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
-router.get('/', function(req, res, next) {
-    res.json({ message: 'hooray! welcome to our api!' }); 
-     
 
+router.get('/', function(req, res) {
+	var userChoice = req.query.deck;
+	console.log(userChoice + " first");
+	// var mydata = runMysql(userChoice);
+		// var mydata = mybasicData.deck();	
+	// console.log(mydata + " in GET");
+	res.send(runMysql(userChoice));
 });
 // ----------------------------------------------------
 // on routes that end in /basic
@@ -111,26 +113,28 @@ console.log('Magic happens on port ' + port);
 // var sqlstr = stringify(astObj);
 var genre = "all";
 
-function runMysql(){
+function runMysql(gtype){
 	connection.connect();
 	connection.query('SHOW TABLES;', function (error, results, fields){
-	if (error) throw error;
+	if (error) {console.log(error);}
 	console.log('THE SOLUTION IS ', JSON.stringify(results));
 	});
 
 	
 
-	if (genre === "all") {
-		connection.query("SELECT `title` FROM `music`;", function (error, results, fields){
-			if (error) throw error;
+	if (gtype === "basic") {
+		connection.query("SELECT front, back FROM basic;", function (error, results, fields){
+			if (error) {console.log(error);}
 			console.log('THE SOLUTION IS ', JSON.stringify(results));
+
 			for (i=0; i < results.length; i++) {
-				console.log(results[i].title);
+				console.log(results[i].front + " " + results[i].back);
 			}
+			return results;
 		});
 	} else 
 	connection.query("SELECT `title` FROM `music` WHERE genre=?", [genre], function (error, results, fields){
-		if (error) throw error;
+		if (error) {console.log(error);}
 		console.log('THE SOLUTION IS ', JSON.stringify(results));
 		for (i=0; i < results.length; i++) {
 			console.log(results[i].title);
@@ -138,7 +142,6 @@ function runMysql(){
 	});
 	connection.end();
 }
-runMysql();
 // var ast = new AST();
 // console.log(sqlstr);
  
