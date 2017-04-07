@@ -5,7 +5,5 @@
 {"front":"In What city is the Liberty Bell Kept?","back":"Philadelphia"}
 {"front":"Who founded the United States Coast Guard?","back":"Alexander Hamilton"}
 {"front":"Which President is credited with freeing the slaves?","back":"Abraham Lincoln"}
-{}
-{}
 {"front":"In what state is Acadia National Park located?","back":"Maine"}
 {}
