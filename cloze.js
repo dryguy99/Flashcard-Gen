@@ -8,6 +8,15 @@ exports.clozeCard = function (front, back, mycloze){
     this.front = front;
     this.back = back;
     this.partial = mycloze;
+    this.deck = function (input, data) {
+			fs.readFile(this.file, "utf8", function(error, data){
+				if(error){
+					console.log("error reading file");
+				}
+				console.log("Cloze card: " + data);
+				return data;
+			});	
+    	}
   } else {
     return new clozeCard(front, back, partial);  
   }

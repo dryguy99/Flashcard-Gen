@@ -4,14 +4,16 @@ var fs = require("fs");
 exports.basicCard = function (front, back){
 
 	if (this instanceof Object){
+		this.file = "basic-card.txt";
 	    this.front = front;
 	    this.back = back;
-	    this.deck = function () {
-			fs.readFile("basic-card.txt", "utf8", function(error, data){
+	    this.deck = function (input, data) {
+			fs.readFile(this.file, "utf8", function(error, data){
 				if(error){
 					console.log("error reading file");
 				}
-				// console.log("flashcard: " + data);
+				console.log("Basic card: " + data);
+				return data;
 			});	
     	}
 	} else {

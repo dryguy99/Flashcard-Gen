@@ -2,8 +2,9 @@
 
 // BASE SETUP
 // =============================================================================
-// var gtype = "basic";
+var myData = {};
 // call the packages we need
+//var Promise = require("bluebird");
 var express    = require('express');        // call express
 var app        = express();                 // define our app using express
 var bodyParser = require('body-parser');	// parse the json data
@@ -29,6 +30,7 @@ var allowCrossDomain = function(req, res, next) {
 };
 app.use(allowCrossDomain);
 var mybasicData = new basic.basicCard();
+var myclozeData = new cloze.clozeCard();
 
 //----------------------------------------------
 // set up mySQL
@@ -39,7 +41,7 @@ var connection = mysql.createConnection({
  password: '',
  database: 'flashcard_db'
 });
-
+connection.connect();
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -62,12 +64,50 @@ router.use(function(req, res, next) {
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 
 router.get('/', function(req, res) {
+	function runMysql(gtype){
+		if (gtype === "basic") {
+			connection.query("SELECT front, back FROM basic;", function (error, results, fields){
+				if (error) {console.log(error);}
+				console.log('THE SOLUTION IS ', JSON.stringify(results));
+
+				for (i=0; i < results.length; i++) {
+					console.log(results[i].front + " " + results[i].back);
+				}
+				res.send(results);
+				return results;
+			});
+		} else if (gtype === 'cloze') {
+			connection.query("SELECT front, back, cloze FROM cloze;", function (error, results, fields){
+				if (error) {console.log(error);}
+				console.log('THE SOLUTION IS ', JSON.stringify(results));
+				for (i=0; i < results.length; i++) {
+					console.log(results[i].front + " " + results[i].cloze + " " + results[i].back);
+				}
+				res.send(results);
+				return results;
+			});
+		}
+}		
 	var userChoice = req.query.deck;
+	var response = req.query;
 	console.log(userChoice + " first");
-	// var mydata = runMysql(userChoice);
-		// var mydata = mybasicData.deck();	
+	var mydata = runMysql(userChoice);
+	// switch (userChoice) {
+	// 	case "basic":
+	// 		mydata = mybasicData.deck(response);
+	// 		console.log("before send " + mydata);
+	// 		res.send(mydata);
+	// 		break;
+	// 	case "cloze":
+	// 		mydata = myclozeData.deck(response);
+	// 		console.log("before send " + mydata);
+	// 		res.send(mydata);
+	// 		break;
+	// }
+		
 	// console.log(mydata + " in GET");
-	res.send(runMysql(userChoice));
+	console.log("after send " + mydata);
+	
 });
 // ----------------------------------------------------
 // on routes that end in /basic
@@ -75,6 +115,17 @@ router.route('/basic')
 
 // create a basic card (accessed at POST http://localhost:8080/api/basic)
     .post(function(req, res) {
+    	var front = req.query.front;
+        var back = req.query.back;
+    	function postbasicMysql(front, back){
+    		console.log(front + " : " + back);
+			connection.query("INSERT INTO flashcard_db.basic (front, back) VALUES ('" + front + "','" + back + "');", function (error, results, fields){
+				if (error) {console.log(error);}
+				console.log('THE SOLUTION IS ', JSON.stringify(results));
+				return results;
+			});
+		}
+		postbasicMysql(front, back);
         console.log(req.query);
         // create a new instance of the Basic model
        	basic.basicCard(req.query.front, req.query.back);      
@@ -90,6 +141,15 @@ router.route('/cloze')
         var front = req.query.front;
         var back = req.query.back;
         var mycloze = front.replace(back, " ... ");
+        function postclozeMysql(front, back, mycloze){
+    		console.log(front + " : " + back);
+			connection.query("INSERT INTO flashcard_db.cloze (front, back, cloze) VALUES ('" + front + "','" + back + "','" + mycloze + "');", function (error, results, fields){
+				if (error) {console.log(error);}
+				console.log('THE SOLUTION IS ', JSON.stringify(results));
+				return results;
+			});
+		}
+		postclozeMysql(front, back, mycloze);
        	cloze.clozeCard(front, back, mycloze);      // create a new instance of the Basic model
        
         // save the bear and check for errors
@@ -116,35 +176,7 @@ console.log('Magic happens on port ' + port);
 // var sqlstr = stringify(astObj);
 var genre = "all";
 
-function runMysql(gtype){
-	connection.connect();
-	connection.query('SHOW TABLES;', function (error, results, fields){
-	if (error) {console.log(error);}
-	console.log('THE SOLUTION IS ', JSON.stringify(results));
-	});
 
-	
-
-	if (gtype === "basic") {
-		connection.query("SELECT front, back FROM basic;", function (error, results, fields){
-			if (error) {console.log(error);}
-			console.log('THE SOLUTION IS ', JSON.stringify(results));
-
-			for (i=0; i < results.length; i++) {
-				console.log(results[i].front + " " + results[i].back);
-			}
-			return results;
-		});
-	} else 
-	connection.query("SELECT `title` FROM `music` WHERE genre=?", [genre], function (error, results, fields){
-		if (error) {console.log(error);}
-		console.log('THE SOLUTION IS ', JSON.stringify(results));
-		for (i=0; i < results.length; i++) {
-			console.log(results[i].title);
-		}
-	});
-	connection.end();
-}
 // var ast = new AST();
 // console.log(sqlstr);
  
