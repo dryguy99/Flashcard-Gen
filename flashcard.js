@@ -11,7 +11,7 @@ exports.basicCard = function (front, back){
 				if(error){
 					console.log("error reading file");
 				}
-				console.log("flashcard: " + data);
+				// console.log("flashcard: " + data);
 			});	
     	}
 	} else {

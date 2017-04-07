@@ -1,8 +1,6 @@
-{"front":"George Washington is the First President of the United States","back":"George Washington"}
-{"front":"July 4 is Independence Day in the United States.","back":"July 4"}
-{"front":"The Liberty Bell is kept in the city of Philadelphia.","back":"Philadelphia"}
-{"front":"Who founded the United States Coast Guard?","back":"Alexander Hamilton"}
-{"front":"Alexander Hamilton founded the United States Coast Guard.","back":"Alexander Hamilton"}
-{"front":"Benjamin Franklin was the first Postmaster General of the United States.","back":"Benjamin Franklin"}
-{"front":"Theodore Roosevelt created the National Park System in the United States.","back":"Theodore Roosevelt"}
 {"front":"Theodore Roosevelt created the National Park System in the United States.","back":"Theodore Roosevelt","partial":" ...  created the National Park System in the United States."}
+{"front":"Alexander Hamilton founded the United States Coast Guard.","back":"Alexander Hamilton","partial":" ...  founded the United States Coast Guard."}
+{"front":"Benjamin Franklin was the first Postmaster General of the United States.","back":"Benjamin Franklin","partial":" ...  was the first Postmaster General of the United States."}
+{"front":"The Liberty Bell is kept in the city of Philadelphia.","back":"Philadelphia","partial":"The Liberty Bell is kept in the city of  ... ."}
+{"front":"July 4 is Independence Day in the United States.","back":"July 4","partial":" ...  is Independence Day in the United States."}
+{"front":"George Washington is the First President of the United States.","back":"George Washington","partial":" ...  is the First President of the United States."}

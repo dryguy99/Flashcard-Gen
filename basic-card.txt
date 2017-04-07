@@ -5,17 +5,3 @@
 {"front":"In What city is the Liberty Bell Kept?","back":"Philadelphia"}
 {"front":"Who founded the United States Coast Guard?","back":"Alexander Hamilton"}
 {}
-{}
-{}
-{}
-{}
-{}
-{}
-{}
-{}
-{}
-{}
-{}
-{}
-{}
-{}
