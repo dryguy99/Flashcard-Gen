@@ -87,7 +87,10 @@ router.route('/cloze')
 // create a cloze card (accessed at POST http://localhost:8080/api/cloze)
     .post(function(req, res) {
         console.log(req.query);
-       	cloze.clozeCard(req.query.front, req.query.back);      // create a new instance of the Basic model
+        var front = req.query.front;
+        var back = req.query.back;
+        var mycloze = front.replace(back, " ... ");
+       	cloze.clozeCard(front, back, mycloze);      // create a new instance of the Basic model
        
         // save the bear and check for errors
 

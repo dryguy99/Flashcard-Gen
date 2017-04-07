@@ -4,3 +4,5 @@
 {"front":"Who founded the United States Coast Guard?","back":"Alexander Hamilton"}
 {"front":"Alexander Hamilton founded the United States Coast Guard.","back":"Alexander Hamilton"}
 {"front":"Benjamin Franklin was the first Postmaster General of the United States.","back":"Benjamin Franklin"}
+{"front":"Theodore Roosevelt created the National Park System in the United States.","back":"Theodore Roosevelt"}
+{"front":"Theodore Roosevelt created the National Park System in the United States.","back":"Theodore Roosevelt","partial":" ...  created the National Park System in the United States."}
