@@ -74,22 +74,17 @@ router.get('/', function(req, res) {
 	function runMysql(gtype){
 		if (gtype === "basic") {
 			connection.query("SELECT front, back FROM basic;", function (error, results, fields){
-				if (error) {console.log(error);}
+				if (error) {
+					res.send(error);}
 				console.log('THE SOLUTION IS ', JSON.stringify(results));
 
-				for (i=0; i < results.length; i++) {
-					console.log(results[i].front + " " + results[i].back);
-				}
 				res.send(results);
 				return results;
 			});
 		} else if (gtype === 'cloze') {
 			connection.query("SELECT front, back, cloze FROM cloze;", function (error, results, fields){
-				if (error) {console.log(error);}
-				console.log('THE SOLUTION IS ', JSON.stringify(results));
-				for (i=0; i < results.length; i++) {
-					console.log(results[i].front + " " + results[i].cloze + " " + results[i].back);
-				}
+				if (error) {
+					res.send(error);}
 				res.send(results);
 				return results;
 			});
@@ -127,8 +122,7 @@ router.route('/basic')
     	function postbasicMysql(front, back){
     		console.log(front + " : " + back);
 			connection.query("INSERT INTO flashcard_db.basic (front, back) VALUES ('" + front + "','" + back + "');", function (error, results, fields){
-				if (error) {console.log(error);}
-				console.log('THE SOLUTION IS ', JSON.stringify(results));
+				if (error) {res.send(error);}
 				return results;
 			});
 		}
@@ -151,7 +145,7 @@ router.route('/cloze')
         function postclozeMysql(front, back, mycloze){
     		console.log(front + " : " + back);
 			connection.query("INSERT INTO flashcard_db.cloze (front, back, cloze) VALUES ('" + front + "','" + back + "','" + mycloze + "');", function (error, results, fields){
-				if (error) {console.log(error);}
+				if (error) {res.send(error);}
 				console.log('THE SOLUTION IS ', JSON.stringify(results));
 				return results;
 			});
@@ -173,7 +167,7 @@ app.use('/api', router);
 // START THE SERVER
 // =============================================================================
 app.listen(port);
-console.log('Magic happens on port ' + port);
+//console.log('Magic happens on port ' + port);
 
 // var sql = 'select * from table a where field 1 = 1';
 // var parse = require('node-sqlparser').parse;
@@ -181,7 +175,6 @@ console.log('Magic happens on port ' + port);
 // var astObj = parse(sql);
  
 // var sqlstr = stringify(astObj);
-var genre = "all";
 
 
 // var ast = new AST();
