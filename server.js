@@ -145,9 +145,12 @@ router.route('/cloze')
         function postclozeMysql(front, back, mycloze){
     		console.log(front + " : " + back);
 			connection.query("INSERT INTO flashcard_db.cloze (front, back, cloze) VALUES ('" + front + "','" + back + "','" + mycloze + "');", function (error, results, fields){
-				if (error) {res.send(error);}
-				console.log('THE SOLUTION IS ', JSON.stringify(results));
-				return results;
+				if (error) {res.send(error);
+				} else {
+					console.log('THE SOLUTION IS ', JSON.stringify(results));
+					res.json({ message: 'Card created!' });
+					return results;
+				}
 			});
 		}
 		postclozeMysql(front, back, mycloze);
@@ -155,7 +158,7 @@ router.route('/cloze')
        
         // save the bear and check for errors
 
-            res.json({ message: 'Card created!' });
+            
     });
 
 //basic.basicCard("whos is the first President", "george washington");
