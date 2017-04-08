@@ -124,15 +124,14 @@ router.route('/basic')
     		console.log(front + " : " + back);
 			connection.query("INSERT INTO flashcard_db.basic (front, back) VALUES ('" + front + "','" + back + "');", function (error, results, fields){
 				if (error) {res.send(error);}
-				return results;
+		        // save the card and check for errors
+		        res.json({ message: 'Card created!' });
 			});
 		}
 		postbasicMysql(front, back);
         console.log(req.query);
         // create a new instance of the Basic model
        	basic.basicCard(req.query.front, req.query.back);      
-        // save the card and check for errors
-            res.json({ message: 'Card created!' });
  	});
 // on routes that end in /cloze
 router.route('/cloze')
