@@ -76,7 +76,8 @@ router.get('/', function(req, res) {
 		if (gtype === "basic") {
 			connection.query("SELECT front, back FROM basic;", function (error, results, fields){
 				if (error) {
-					res.send(error);}
+					res.send(error);
+				}
 				console.log('THE SOLUTION IS ', JSON.stringify(results));
 
 				res.send(results);
@@ -122,7 +123,7 @@ router.route('/basic')
         var back = req.query.back;
     	function postbasicMysql(front, back){
     		console.log(front + " : " + back);
-			connection.query("INSERT INTO flashcard_db.basic (front, back) VALUES ('" + front + "','" + back + "');", function (error, results, fields){
+			connection.query("INSERT INTO y0cg1nb2b394wk40.basic (front, back) VALUES ('" + front + "','" + back + "');", function (error, results, fields){
 				if (error) {res.send(error);}
 		        // save the card and check for errors
 		        res.json({ message: 'Card created!' });
@@ -144,7 +145,7 @@ router.route('/cloze')
         var mycloze = front.replace(back, " ... ");
         function postclozeMysql(front, back, mycloze){
     		console.log(front + " : " + back);
-			connection.query("INSERT INTO flashcard_db.cloze (front, back, cloze) VALUES ('" + front + "','" + back + "','" + mycloze + "');", function (error, results, fields){
+			connection.query("INSERT INTO y0cg1nb2b394wk40.cloze (front, back, cloze) VALUES ('" + front + "','" + back + "','" + mycloze + "');", function (error, results, fields){
 				if (error) {res.send(error);
 				} else {
 					console.log('THE SOLUTION IS ', JSON.stringify(results));
