@@ -5,3 +5,7 @@
 {"front":"July 4 is Independence Day in the United States.","back":"July 4","partial":" ...  is Independence Day in the United States."}
 {"front":"George Washington is the First President of the United States.","back":"George Washington","partial":" ...  is the First President of the United States."}
 {"front":"Acadia National Park is located in the state of Maine.","back":"Maine","partial":"Acadia National Park is located in the state of  ... ."}
+{}
+{}
+{}
+{"front":"My favorite color is Red","back":"Red","partial":"My favorite color is  ... "}

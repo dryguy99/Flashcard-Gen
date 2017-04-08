@@ -33,13 +33,20 @@ var mybasicData = new basic.basicCard();
 var myclozeData = new cloze.clozeCard();
 
 //----------------------------------------------
-// set up mySQL
+// set up mySQL local
+// var connection = mysql.createConnection({
+//  host: "localhost",
+//  port: 3306,
+//  user: 'root',
+//  password: '',
+//  database: 'flashcard_db'
+// });
 var connection = mysql.createConnection({
- host: "localhost",
+ host: "wvulqmhjj9tbtc1w.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
  port: 3306,
- user: 'root',
- password: '',
- database: 'flashcard_db'
+ user: 'ogcd9hligymivxa7',
+ password: 'nom02ddbbpux8ox1',
+ database: 'y0cg1nb2b394wk40'
 });
 connection.connect();
 

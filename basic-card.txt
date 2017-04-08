@@ -6,4 +6,4 @@
 {"front":"Who founded the United States Coast Guard?","back":"Alexander Hamilton"}
 {"front":"Which President is credited with freeing the slaves?","back":"Abraham Lincoln"}
 {"front":"In what state is Acadia National Park located?","back":"Maine"}
-{}
+{"front":"What is the name of our class?","back":"Rutgers Coding Bootcamp"}
