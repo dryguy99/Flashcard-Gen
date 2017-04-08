@@ -117,7 +117,7 @@ router.get('/', function(req, res) {
 router.route('/basic')
 
 // create a basic card (accessed at POST http://localhost:8080/api/basic)
-    .post(allowCrossDomain, function(req, res) {
+    .post(function(req, res) {
     	var front = req.query.front;
         var back = req.query.back;
     	function postbasicMysql(front, back){
