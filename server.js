@@ -44,9 +44,9 @@ var myclozeData = new cloze.clozeCard();
 var connection = mysql.createConnection({
  host: "wvulqmhjj9tbtc1w.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
  port: 3306,
- user: 'ogcd9hligymivxa7',
- password: 'nom02ddbbpux8ox1',
- database: 'y0cg1nb2b394wk40'
+ user: "ogcd9hligymivxa7",
+ password: "nom02ddbbpux8ox1",
+ database: "y0cg1nb2b394wk40"
 });
 connection.connect();
 
@@ -169,19 +169,4 @@ app.use('/api', router);
 app.listen(port);
 //console.log('Magic happens on port ' + port);
 
-// var sql = 'select * from table a where field 1 = 1';
-// var parse = require('node-sqlparser').parse;
-// var stringify = require('node-sqlparser').stringify;
-// var astObj = parse(sql);
- 
-// var sqlstr = stringify(astObj);
-
-
-// var ast = new AST();
-// console.log(sqlstr);
- 
-
-// ast.parse(sql);
- 
-// ast.stringify();
 
