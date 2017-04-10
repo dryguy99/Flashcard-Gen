@@ -19,8 +19,6 @@ var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
-    console.log("allowCrossDomain called");
-
     // intercept OPTIONS method
     if ('OPTIONS' == req.method) {
       res.send(200);
@@ -42,6 +40,8 @@ var myclozeData = new cloze.clozeCard();
 //  password: '',
 //  database: 'flashcard_db'
 // });
+//----------------------------------------------
+// set up mysql for use on website
 var connection = mysql.createConnection({
  host: "wvulqmhjj9tbtc1w.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
  port: 3306,
@@ -81,36 +81,18 @@ router.get('/', function(req, res) {
 				console.log('THE SOLUTION IS ', JSON.stringify(results));
 
 				res.send(results);
-				return results;
 			});
 		} else if (gtype === 'cloze') {
 			connection.query("SELECT front, back, cloze FROM cloze;", function (error, results, fields){
 				if (error) {
 					res.send(error);}
 				res.send(results);
-				return results;
 			});
 		}
 }		
 	var userChoice = req.query.deck;
 	var response = req.query;
 	console.log(userChoice + " first");
-	var mydata = runMysql(userChoice);
-	// switch (userChoice) {
-	// 	case "basic":
-	// 		mydata = mybasicData.deck(response);
-	// 		console.log("before send " + mydata);
-	// 		res.send(mydata);
-	// 		break;
-	// 	case "cloze":
-	// 		mydata = myclozeData.deck(response);
-	// 		console.log("before send " + mydata);
-	// 		res.send(mydata);
-	// 		break;
-	// }
-		
-	// console.log(mydata + " in GET");
-	console.log("after send " + mydata);
 	
 });
 // ----------------------------------------------------
@@ -154,15 +136,14 @@ router.route('/cloze')
 				}
 			});
 		}
+		// send new data to MySQL database
 		postclozeMysql(front, back, mycloze);
-       	cloze.clozeCard(front, back, mycloze);      // create a new instance of the Basic model
-       
-        // save the bear and check for errors
+		// create a new instance of the Basic model
+       	cloze.clozeCard(front, back, mycloze);      
 
+       
             
     });
-
-//basic.basicCard("whos is the first President", "george washington");
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
