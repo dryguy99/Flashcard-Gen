@@ -89,8 +89,9 @@ router.get('/', function(req, res) {
 				res.send(results);
 			});
 		}
-}		
+	}		
 	var userChoice = req.query.deck;
+	runMysql(userChoice);
 	var response = req.query;
 	console.log(userChoice + " first");
 	
