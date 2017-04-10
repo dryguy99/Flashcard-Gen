@@ -78,7 +78,7 @@ router.get('/', function(req, res) {
 				if (error) {
 					res.send(error);
 				}
-				console.log('THE SOLUTION IS ', JSON.stringify(results));
+				//console.log('THE SOLUTION IS ', JSON.stringify(results));
 
 				res.send(results);
 			});
@@ -93,7 +93,7 @@ router.get('/', function(req, res) {
 	var userChoice = req.query.deck;
 	runMysql(userChoice);
 	var response = req.query;
-	console.log(userChoice + " first");
+	//console.log(userChoice + " first");
 	
 });
 // ----------------------------------------------------
@@ -105,7 +105,7 @@ router.route('/basic')
     	var front = req.query.front;
         var back = req.query.back;
     	function postbasicMysql(front, back){
-    		console.log(front + " : " + back);
+    		//console.log(front + " : " + back);
 			connection.query("INSERT INTO y0cg1nb2b394wk40.basic (front, back) VALUES ('" + front + "','" + back + "');", function (error, results, fields){
 				if (error) {res.send(error);}
 		        // save the card and check for errors
@@ -113,7 +113,7 @@ router.route('/basic')
 			});
 		}
 		postbasicMysql(front, back);
-        console.log(req.query);
+        //console.log(req.query);
         // create a new instance of the Basic model
        	basic.basicCard(req.query.front, req.query.back);      
  	});
@@ -122,16 +122,16 @@ router.route('/cloze')
 
 // create a cloze card (accessed at POST http://localhost:8080/api/cloze)
     .post(function(req, res) {
-        console.log(req.query);
+        //console.log(req.query);
         var front = req.query.front;
         var back = req.query.back;
         var mycloze = front.replace(back, " ... ");
         function postclozeMysql(front, back, mycloze){
-    		console.log(front + " : " + back);
+    		//console.log(front + " : " + back);
 			connection.query("INSERT INTO y0cg1nb2b394wk40.cloze (front, back, cloze) VALUES ('" + front + "','" + back + "','" + mycloze + "');", function (error, results, fields){
 				if (error) {res.send(error);
 				} else {
-					console.log('THE SOLUTION IS ', JSON.stringify(results));
+					//console.log('THE SOLUTION IS ', JSON.stringify(results));
 					res.json({ message: 'Card created!' });
 					return results;
 				}
